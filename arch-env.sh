@@ -7,7 +7,7 @@ locale-gen
 echo LANG=en_US.UTF-8 > /etc/locale.conf
 export LANG=en_US.UTF-8
 
-echo 'KEYMAP=ru\nFONT=cyr-sun16' > /etc/vconsole.conf
+echo "KEYMAP=ru\nFONT=cyr-sun16" > /etc/vconsole.conf
 
 ln -s /usr/share/zoneinfo/Asia/Yekaterinburg /etc/localtime
 hwclock --systohc --utc

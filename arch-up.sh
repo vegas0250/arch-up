@@ -14,7 +14,7 @@ mount /dev/sda3 /mnt
 mkdir -p /mnt/boot
 mount /dev/sda1 /mnt/boot
 
-echo 'Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch\n' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
+echo 'Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 
 pacstrap /mnt base base-devel
 genfstab -U -p /mnt >> /mnt/etc/fstab
