@@ -20,4 +20,4 @@ pacstrap /mnt base base-devel
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 mv arch-env.sh /mnt/arch-env.sh
-arch-chroot /mnt /bin/bash -c "su - -c ./arch-env.sh"
+arch-chroot /mnt /bin/bash -c "sh ./arch-env.sh"
