@@ -1,0 +1,1 @@
+pacman -S xorg-server xorg-server-utils xorg-utils xorg-xinit xorg-drivers
