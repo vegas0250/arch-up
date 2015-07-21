@@ -4,8 +4,7 @@ echo -e "[Unity-for-Arch-Extra]\nSigLevel = Optional TrustAll\nServer = http://d
 pacman -Syu
 pacman -S $(pacman -Slq Unity-for-Arch)
 pacman -S $(pacman -Slq Unity-for-Arch-Extra)
-pacman -S lightdm-ubuntu
 
 echo -e "exec unity" > ~/.xinitrc
 
-systemctl enable lightdm-ubuntu
+systemctl enable lightdm
