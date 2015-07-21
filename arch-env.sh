@@ -24,8 +24,6 @@ grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 pacman -S openssh virtualbox-guest-utils virtualbox-guest-modules
 
-echo -e 'vboxguest\nvboxsf\nvboxvideo' > /etc/modules-load.d/virtualbox.conf
-systemctl enable vboxservice
 systemctl enable dhcpcd
 
 passwd
