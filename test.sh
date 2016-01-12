@@ -28,5 +28,5 @@ pacstrap -i /mnt base
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Install part 7: env-up'
-mv arch-env.sh /mnt/test2.sh
+mv test2.sh /mnt/test2.sh
 arch-chroot /mnt /bin/bash -c "sh ./test2.sh"
