@@ -28,4 +28,5 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Install part 7: env-up'
 mv test2.sh /mnt/test2.sh
-arch-chroot /mnt /bin/bash -c "sh ./test2.sh"
+arch-chroot /mnt /bin/bash
+# arch-chroot /mnt /bin/bash -c "sh ./test2.sh"
