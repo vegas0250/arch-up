@@ -23,7 +23,7 @@ echo 'Install part 5: set relevant mirror'
 echo 'Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 
 echo 'Install part 6: sed inetutils linux pacman'
-pacstrap -i /mnt sed inetutils linux pacman pciutils procps-ng psmisc
+pacstrap /mnt base
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Install part 7: env-up'
