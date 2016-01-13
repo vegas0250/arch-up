@@ -1,10 +1,11 @@
-
 echo 'Install part 1: parted dev'
-parted /dev/sda mklabel msdos > /dev/null
-parted /dev/sda mkpart primary ext4 1M 100M > /dev/null
-parted /dev/sda set 1 boot on > /dev/null
-parted /dev/sda mkpart primary linux-swap 100M 2G > /dev/null
-parted /dev/sda mkpart primary ext4 2G 100% > /dev/null
+echo -e "
+mklabel msdos\n
+mkpart primary ext4 1M 100M\n
+mkpart primary linux-swap 100M 2G\n
+mkpart primary ext4 2G 100%\n
+set 1 boot on\n
+" | parted /dev/sda 2>&1 1>/dev/null
 
 echo 'Install part 2: format dev'
 mkfs.ext4 /dev/sda1 > /dev/null
