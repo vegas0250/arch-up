@@ -5,6 +5,10 @@ sudo systemctl start mysqld
 mysql_secure_installation
 
 sudo su - postgres -c "initdb --locale ru_RU.UTF-8 -E UTF8 -D '/var/lib/postgres/data'"
+sudo -u postgres sed -i 's/127.0.0.1\/32/0.0.0.0\/0/g' /var/lib/postgres/data/pg_hba.conf
+sudo -u postgres sed -i "s/#listen_addresses = 'localhost'/listen_addresses = '*'/g" /var/lib/postgres/data/postgresql.conf
+
+mysql --user="root" --password="veemer" --execute="GRANT ALL ON *.* TO root@'*' IDENTIFIED BY 'veemer';"
 
 cd ~
 php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
