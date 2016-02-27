@@ -17,7 +17,7 @@ echo -e 'veemer\nveemer' | passwd veemer
 systemctl enable dhcpcd
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-echo 'veemer ALL=(ALL) PASSWD:ALL\n' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
+echo 'veemer ALL=(ALL) PASSWD:ALL' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
 
 sudo -u veemer cd ~
 sudo -u veemer php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
