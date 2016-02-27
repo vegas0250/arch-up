@@ -39,17 +39,10 @@ hwclock --systohc --utc\n
 echo delta > /etc/hostname\n
 echo -e '#<ip-address> <hostname.domain.org> <hostname>\n127.0.0.1 localhost.localdomain localhost delta\n::1   localhost.localdomain localhost delta' > /etc/hosts\n
 mkinitcpio -p linux\n
-pacman -S grub apache php php-apache php-gd php-mcrypt php-pgsql mariadb postgresql nodejs npm --noconfirm\n
+pacman -S grub --quiet --noconfirm\n
 useradd -m veemer\n
 echo -e 'veemer\nveemer' | passwd\n
 echo -e 'veemer\nveemer' | passwd veemer\n
-echo 'veemer ALL=(ALL) NOPASSWORD:ALL\n' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
-su veemer\n
-cd ~\n
-php -r 'readfile('https://getcomposer.org/installer');' > composer-setup.php\n
-php composer-setup.php\n
-php -r 'unlink('composer-setup.php');'\n
-sudo mv composer.phar /usr/local/bin/composer\n
 
 grub-install --target=i386-pc --recheck /dev/sda\n
 grub-mkconfig -o /boot/grub/grub.cfg\n
@@ -61,3 +54,5 @@ grub-mkconfig -o /boot/grub/grub.cfg\n
 mv vm_env.sh /mnt/vm_env.sh
 # arch-chroot /mnt /bin/bash
 arch-chroot /mnt /bin/bash -c "sh ./vm_env.sh"
+
+systemctl reboot

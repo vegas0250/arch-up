@@ -1,6 +1,4 @@
-pacman -S apache php php-apache php-gd php-mcrypt php-pgsql mariadb postgresql nodejs npm --noconfirm
-echo 'veemer ALL=(ALL) NOPASSWORD:ALL\n' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
-su veemer\n
+sudo pacman -S apache php php-apache php-gd php-mcrypt php-pgsql mariadb postgresql nodejs npm --quiet --noconfirm
 cd ~\n
 php -r 'readfile('https://getcomposer.org/installer');' > composer-setup.php\n
 php composer-setup.php\n
