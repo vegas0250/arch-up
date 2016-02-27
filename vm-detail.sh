@@ -1,6 +1,6 @@
 sudo systemctl stop mysqld
 sudo chattr +C /var/lib/mysql
-mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql 1>/dev/null
 sudo systemctl start mysqld
 mysql_secure_installation
 
