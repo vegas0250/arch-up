@@ -17,15 +17,16 @@ echo -e 'veemer\nveemer' | passwd veemer
 systemctl enable dhcpcd
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-su veemer
-cd ~
-php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
-php composer-setup.php
-php -r "unlink('composer-setup.php');"
-sudo mv composer.phar /usr/local/bin/composer
+echo 'veemer ALL=(ALL) PASSWD:ALL\n' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
 
-mkdir ~/.npm-global
-npm config set prefix '~/.npm-global'
+sudo -u veemer cd ~
+sudo -u veemer php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
+sudo -u veemer php composer-setup.php
+sudo -u veemer php -r "unlink('composer-setup.php');"
+sudo -u veemer sudo mv composer.phar /usr/local/bin/composer
 
-echo -e "export PATH=~/.npm-global/bin:$PATH" > ~/.bash
-source ~/.bash
+sudo -u veemer mkdir ~/.npm-global
+sudo -u veemer npm config set prefix '~/.npm-global'
+
+sudo -u veemer echo -e "export PATH=~/.npm-global/bin:$PATH" > ~/.bash
+sudo -u veemer source ~/.bash
