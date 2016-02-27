@@ -28,6 +28,7 @@ echo 'veemer ALL=(ALL) PASSWD:ALL' | cat - /etc/sudoers > temp && mv temp /etc/s
 
 sed -i 's/LoadModule mpm_event_module modules\/mod_mpm_event.so/LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/g' /etc/httpd/conf/httpd.conf
 sed -i 's/LoadModule dir_module modules\/mod_dir.so/LoadModule dir_module modules\/mod_dir.so\nLoadModule php7_module modules\/libphp7.so/g' /etc/httpd/conf/httpd.conf
+sed -i 's/Include conf\/extra\/httpd-default.conf/Include conf\/extra\/httpd-default.conf\nInclude conf\/extra\/php7_module.conf/g' /etc/httpd/conf/httpd.conf
 sed -i 's/;date.timezone/date.timezone = Europe\/Moscow/g' /etc/php/php.ini
 sed -i 's/display_errors=Off/display_errors=On/g' /etc/php/php.ini
 sed -i 's/#extension=gd.so/extension=gd.so/g' /etc/php/php.ini
@@ -46,3 +47,4 @@ systemctl enable postgresql
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 
+systemctl reboot
