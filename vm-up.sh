@@ -28,31 +28,14 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 echo 'Install part 7: env-up'
 
 echo -e "
-sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen\n
-sed -i 's/#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/g' /etc/locale.gen\n
-locale-gen\n
-echo LANG=en_US.UTF-8 > /etc/locale.conf\n
-export LANG=en_US.UTF-8\n
-echo -e 'KEYMAP=ru\nFONT=cyr-sun16' > /etc/vconsole.conf\n
-ln -s /usr/share/zoneinfo/Asia/Yekaterinburg /etc/localtime\n
-hwclock --systohc --utc\n
-echo delta > /etc/hostname\n
-echo -e '#<ip-address> <hostname.domain.org> <hostname>\n127.0.0.1 localhost.localdomain localhost delta\n::1   localhost.localdomain localhost delta' > /etc/hosts\n
-mkinitcpio -p linux\n
-pacman -S grub --quiet --noconfirm\n
-useradd -m veemer\n
-echo -e 'veemer\nveemer' | passwd\n
-echo -e 'veemer\nveemer' | passwd veemer\n
 
-grub-install --target=i386-pc --recheck /dev/sda\n
-grub-mkconfig -o /boot/grub/grub.cfg\n
 " > vm_env.sh
 
 
 
 
-mv vm_env.sh /mnt/vm_env.sh
+mv vm-env.sh /mnt/vm-env.sh
 # arch-chroot /mnt /bin/bash
-arch-chroot /mnt /bin/bash -c "sh ./vm_env.sh"
+arch-chroot /mnt /bin/bash -c "sh ./vm-env.sh"
 
-systemctl reboot
+# systemctl reboot
