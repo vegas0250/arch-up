@@ -24,13 +24,7 @@ useradd -m veemer
 echo -e 'veemer\nveemer' | passwd
 echo -e 'veemer\nveemer' | passwd veemer
 
-chattr +C /var/lib/mysql
-mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
-systemctl start mysqld
-mysql_secure_installation
-
-sudo su - postgres -c "initdb --locale ru_RU.UTF-8 -E UTF8 -D '/var/lib/postgres/data'"
-
+echo 'veemer ALL=(ALL) PASSWD:ALL' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
 
 sed -i 's/LoadModule mpm_event_module modules\/mod_mpm_event.so/LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/g' /etc/httpd/conf/httpd.conf
 sed -i 's/LoadModule dir_module modules\/mod_dir.so/LoadModule dir_module modules\/mod_dir.so\nLoadModule php7_module modules\/libphp7.so/g' /etc/httpd/conf/httpd.conf
@@ -51,16 +45,4 @@ systemctl enable postgresql
 
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-echo 'veemer ALL=(ALL) PASSWD:ALL' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
 
-# sudo -u veemer cd ~
-# sudo -u veemer php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
-# sudo -u veemer php composer-setup.php
-# sudo -u veemer php -r "unlink('composer-setup.php');"
-# sudo -u veemer sudo mv composer.phar /usr/local/bin/composer
-
-# sudo -u veemer mkdir ~/.npm-global
-# sudo -u veemer npm config set prefix '~/.npm-global'
-
-# sudo -u veemer echo -e "export PATH=~/.npm-global/bin:$PATH" > ~/.bash
-# sudo -u veemer source ~/.bash
