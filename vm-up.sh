@@ -27,13 +27,6 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Install part 7: env-up'
 
-echo -e "
-
-" > vm_env.sh
-
-
-
-
 mv vm-env.sh /mnt/vm-env.sh
 # arch-chroot /mnt /bin/bash
 arch-chroot /mnt /bin/bash -c "sh ./vm-env.sh"

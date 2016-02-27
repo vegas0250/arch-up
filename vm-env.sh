@@ -9,7 +9,7 @@ hwclock --systohc --utc
 echo delta > /etc/hostname
 echo -e '#<ip-address> <hostname.domain.org> <hostname>\n127.0.0.1 localhost.localdomain localhost delta\n::1   localhost.localdomain localhost delta' > /etc/hosts
 mkinitcpio -p linux
-pacman -S grub apache php php-apache php-gd php-mcrypt php-pgsql mariadb postgresql nodejs npm --quiet --noconfirm
+pacman -S grub apache php php-apache php-gd php-mcrypt php-pgsql mariadb postgresql nodejs npm git --quiet --noconfirm
 useradd -m veemer
 echo -e 'veemer\nveemer' | passwd
 echo -e 'veemer\nveemer' | passwd veemer
@@ -17,7 +17,7 @@ echo -e 'veemer\nveemer' | passwd veemer
 systemctl enable dhcpcd
 grub-install --target=i386-pc --recheck /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
-
+su veemer
 cd ~
 php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
 php composer-setup.php
