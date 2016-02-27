@@ -17,14 +17,14 @@ vboxsf\n
 vboxvideo\n
 " > /etc/modules-load.d/virtualbox.conf
 
-echo "www   /srv/http    vboxsf  uid=1000,gid=1000,rw,comment=systemd.automount 0 0" > /etc/fstab
-echo "vhost   /srv/vhost    vboxsf  uid=1000,gid=1000,rw,comment=systemd.automount 0 0" > /etc/fstab
+echo "www   /srv/http    vboxsf  uid=1000,gid=1000,rw,comment=systemd.automount 0 0" >> /etc/fstab
+echo "vhost   /srv/vhost    vboxsf  uid=1000,gid=1000,rw,comment=systemd.automount 0 0" >> /etc/fstab
 
 useradd -m veemer -g vboxsf
 echo -e 'veemer\nveemer' | passwd
 echo -e 'veemer\nveemer' | passwd veemer
 
-echo 'veemer ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers
+echo 'veemer ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 sed -i 's/LoadModule mpm_event_module modules\/mod_mpm_event.so/LoadModule mpm_prefork_module modules\/mod_mpm_prefork.so/g' /etc/httpd/conf/httpd.conf
 sed -i 's/LoadModule dir_module modules\/mod_dir.so/LoadModule dir_module modules\/mod_dir.so\nLoadModule php7_module modules\/libphp7.so/g' /etc/httpd/conf/httpd.conf
