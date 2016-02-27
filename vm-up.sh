@@ -2,8 +2,8 @@ echo 'Install part 1: parted dev'
 echo -e "
 mklabel msdos\n
 mkpart primary ext4 1M 100M\n
-mkpart primary linux-swap 100M 2G\n
-mkpart primary ext4 2G 100%\n
+mkpart primary linux-swap 100M 1G\n
+mkpart primary ext4 1G 100%\n
 set 1 boot on\n
 " | parted /dev/sda 2>&1 1>/dev/null
 
