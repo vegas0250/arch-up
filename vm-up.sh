@@ -22,7 +22,7 @@ echo 'Install part 5: set relevant mirror'
 echo 'Server = http://mirror.yandex.ru/archlinux/$repo/os/$arch' | cat - /etc/pacman.d/mirrorlist > temp && mv temp /etc/pacman.d/mirrorlist
 
 echo 'Install part 6: sed inetutils linux pacman'
-pacstrap /mnt base
+pacstrap /mnt base base-devel
 genfstab -U -p /mnt >> /mnt/etc/fstab
 
 echo 'Install part 7: env-up'
@@ -44,7 +44,7 @@ useradd -m veemer\n
 echo -e 'veemer\nveemer' | passwd\n
 echo -e 'veemer\nveemer' | passwd veemer\n
 echo 'veemer ALL=(ALL) NOPASSWORD:ALL\n' | cat - /etc/sudoers > temp && mv temp /etc/sudoers
-echo -e 'veemer' | su veemer\n
+su veemer\n
 cd ~\n
 php -r 'readfile('https://getcomposer.org/installer');' > composer-setup.php\n
 php composer-setup.php\n
